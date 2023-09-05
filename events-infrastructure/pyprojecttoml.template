@@ -26,9 +26,10 @@ homepage = "@homepage@"
 packages = [{include = "@package@"}]
 
 [tool.poetry.dependencies]
-dbus-next = "^@dbusNextVersion@"
-python = "^@pythonMajorMinorVersion@"
+dbus-next = "^@dbusNext@"
+python = "^@pythonMajorMinor@"
 pythoneda-shared-code-requests-events = "^@pythonedaSharedCodeRequestsEvents@"
+pythoneda-shared-code-requests-shared = "^@pythonedaSharedCodeRequestsShared@"
 pythoneda-shared-pythoneda-domain = "^@pythonedaSharedPythonedaDomain@"
 pythoneda-shared-pythoneda-infrastructure = "^@pythonedaSharedPythonedaInfrastructure@"
 
