@@ -102,6 +102,7 @@
         nixpkgsRelease = "nixos-${nixosVersion}";
         shared = import "${pythoneda-shared-pythoneda-banner}/nix/shared.nix";
         pythoneda-shared-code-requests-events-infrastructure-for = { python
+          , pythoneda-shared-artifact-changes-shared
           , pythoneda-shared-code-requests-events
           , pythoneda-shared-code-requests-shared
           , pythoneda-shared-pythoneda-domain
