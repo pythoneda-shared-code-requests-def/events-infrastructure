@@ -28,6 +28,7 @@ packages = [{include = "@package@"}]
 [tool.poetry.dependencies]
 dbus-next = "^@dbusNext@"
 python = "^@pythonMajorMinor@"
+pythoneda-shared-artifact-changes-shared = "^@pythonedaSharedArtifactChangesShared@"
 pythoneda-shared-code-requests-events = "^@pythonedaSharedCodeRequestsEvents@"
 pythoneda-shared-code-requests-shared = "^@pythonedaSharedCodeRequestsShared@"
 pythoneda-shared-pythoneda-domain = "^@pythonedaSharedPythonedaDomain@"
