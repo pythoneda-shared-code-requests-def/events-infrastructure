@@ -17,13 +17,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 {
-  description = "Infrastructure layer of pythoneda-shared-code-requests/events";
+  description = "Infrastructure layer for events relevant to code requests";
   inputs = rec {
     nixos.url = "github:NixOS/nixpkgs/nixos-23.05";
     flake-utils.url = "github:numtide/flake-utils/v1.0.0";
     pythoneda-shared-artifact-changes-shared = {
       url =
-        "github:pythoneda-shared-artifact-changes/shared-artifact/0.0.1a12?dir=shared";
+        "github:pythoneda-shared-artifact-changes/shared-artifact/0.0.1a13?dir=shared";
       inputs.nixos.follows = "nixos";
       inputs.flake-utils.follows = "flake-utils";
       inputs.pythoneda-shared-pythoneda-banner.follows =
@@ -33,7 +33,7 @@
     };
     pythoneda-shared-code-requests-events = {
       url =
-        "github:pythoneda-shared-code-requests/events-artifact/0.0.1a8?dir=events";
+        "github:pythoneda-shared-code-requests/events-artifact/0.0.1a9?dir=events";
       inputs.nixos.follows = "nixos";
       inputs.flake-utils.follows = "flake-utils";
       inputs.pythoneda-shared-artifact-changes-shared.follows =
@@ -47,7 +47,7 @@
     };
     pythoneda-shared-code-requests-shared = {
       url =
-        "github:pythoneda-shared-code-requests/shared-artifact/0.0.1a8?dir=shared";
+        "github:pythoneda-shared-code-requests/shared-artifact/0.0.1a9?dir=shared";
       inputs.nixos.follows = "nixos";
       inputs.flake-utils.follows = "flake-utils";
       inputs.pythoneda-shared-pythoneda-banner.follows =
@@ -62,7 +62,7 @@
     };
     pythoneda-shared-pythoneda-domain = {
       url =
-        "github:pythoneda-shared-pythoneda/domain-artifact/0.0.1a40?dir=domain";
+        "github:pythoneda-shared-pythoneda/domain-artifact/0.0.1a41?dir=domain";
       inputs.nixos.follows = "nixos";
       inputs.flake-utils.follows = "flake-utils";
       inputs.pythoneda-shared-pythoneda-banner.follows =
@@ -70,7 +70,7 @@
     };
     pythoneda-shared-pythoneda-infrastructure = {
       url =
-        "github:pythoneda-shared-pythoneda/infrastructure-artifact/0.0.1a26?dir=infrastructure";
+        "github:pythoneda-shared-pythoneda/infrastructure-artifact/0.0.1a27?dir=infrastructure";
       inputs.nixos.follows = "nixos";
       inputs.flake-utils.follows = "flake-utils";
       inputs.pythoneda-shared-pythoneda-banner.follows =
@@ -90,7 +90,7 @@
         pname = "${org}-${repo}";
         pkgs = import nixos { inherit system; };
         description =
-          "Infrastructure layer of pythoneda-shared-code-requests/events";
+          "Infrastructure layer for events relevant to code requests";
         license = pkgs.lib.licenses.gpl3;
         homepage = "https://github.com/${org}/${repo}";
         maintainers = with pkgs.lib.maintainers;
