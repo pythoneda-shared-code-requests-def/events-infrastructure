@@ -19,16 +19,16 @@
 {
   description = "Infrastructure layer for events relevant to code requests";
   inputs = rec {
-    nixos.url = "github:NixOS/nixpkgs/nixos-23.05";
     flake-utils.url = "github:numtide/flake-utils/v1.0.0";
+    nixos.url = "github:NixOS/nixpkgs/nixos-23.05";
     pythoneda-shared-pythoneda-banner = {
-      url = "github:pythoneda-shared-pythoneda/banner/0.0.1a17";
+      url = "github:pythoneda-shared-pythoneda/banner/0.0.2";
       inputs.nixos.follows = "nixos";
       inputs.flake-utils.follows = "flake-utils";
     };
     pythoneda-shared-pythoneda-domain = {
       url =
-        "github:pythoneda-shared-pythoneda/domain-artifact/0.0.1a43?dir=domain";
+        "github:pythoneda-shared-pythoneda/domain-artifact/0.0.2?dir=domain";
       inputs.nixos.follows = "nixos";
       inputs.flake-utils.follows = "flake-utils";
       inputs.pythoneda-shared-pythoneda-banner.follows =
@@ -36,7 +36,7 @@
     };
     pythoneda-shared-pythoneda-infrastructure = {
       url =
-        "github:pythoneda-shared-pythoneda/infrastructure-artifact/0.0.1a29?dir=infrastructure";
+        "github:pythoneda-shared-pythoneda/infrastructure-artifact/0.0.2?dir=infrastructure";
       inputs.nixos.follows = "nixos";
       inputs.flake-utils.follows = "flake-utils";
       inputs.pythoneda-shared-pythoneda-banner.follows =
@@ -51,7 +51,7 @@
       let
         org = "pythoneda-shared-code-requests";
         repo = "events-infrastructure";
-        version = "0.0.1a1";
+        version = "0.0.2";
         sha256 = "sha256-YWlFKWbmzlJqafe1q5lBSBFvUuKIcT4GZhTOJ/c7Aec=";
         pname = "${org}-${repo}";
         pkgs = import nixos { inherit system; };
