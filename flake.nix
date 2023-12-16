@@ -49,8 +49,8 @@
       let
         org = "pythoneda-shared-code-requests";
         repo = "events-infrastructure";
-        version = "0.0.3";
-        sha256 = "1c6x28sjxvnxfg3dc8rw65j87sgnq1wm1n6zy93lf53zhpinfj4s";
+        version = "0.0.4";
+        sha256 = "05h6zjfriaivgnp5x7gbvdf0p512rhx2y8kmlzrkv5023fzwq3ik";
         pname = "${org}-${repo}";
         pkgs = import nixos { inherit system; };
         description =
