@@ -1,8 +1,8 @@
 # pyprojecttoml.template
 #
-# This file is the template for pythoneda-shared-pythoneda-code-requests/events-infrastructure's pyproject.toml
+# This file is the template for pythoneda-shared-code-requests/events-infrastructure's pyproject.toml
 #
-# Copyright (C) 2023-today rydnr's pythoneda-shared-pythoneda-code-requests-def/events-infrastructure
+# Copyright (C) 2023-today rydnr's pythoneda-shared-code-requests-def/events-infrastructure
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,8 +27,8 @@ packages = [{include = "@package@"}]
 
 [tool.poetry.dependencies]
 python = "^@pythonMajorMinor@"
-pythoneda-shared-pythoneda-domain = "^@pythonedaSharedPythonedaDomain@"
-pythoneda-shared-pythoneda-infrastructure = "^@pythonedaSharedPythonedaInfrastructure@"
+pythoneda-shared-domain = "^@pythonedaSharedDomain@"
+pythoneda-shared-infrastructure = "^@pythonedaSharedInfrastructure@"
 
 [build-system]
 requires = ["poetry-core"]
