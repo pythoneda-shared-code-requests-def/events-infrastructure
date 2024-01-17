@@ -91,19 +91,21 @@
         "nixos": [
           "nixos"
         ],
-        "pythoneda-shared-pythoneda-banner": "pythoneda-shared-pythoneda-banner"
+        "pythoneda-shared-banner": [
+          "pythoneda-shared-banner"
+        ]
       },
       "locked": {
-        "lastModified": 1705047565,
-        "narHash": "sha256-90MhuGqyrW5PHz8O+ZjFqJwkxTArTQd8Lvfxz2AkDLw=",
+        "lastModified": 1705482423,
+        "narHash": "sha256-/r4m4LahqxzxEDb/lVp2t7zN1OrrEXzvEiapjsaS+K0=",
         "owner": "pythoneda-shared-def",
         "repo": "domain",
-        "rev": "c1aaf4442a09e3558c3d152a9fe8d4b57f9976f4",
+        "rev": "53412e6d0c0405547df06f38917380b14c0711eb",
         "type": "github"
       },
       "original": {
         "owner": "pythoneda-shared-def",
-        "ref": "0.0.22",
+        "ref": "0.0.23",
         "repo": "domain",
         "type": "github"
       }
@@ -117,7 +119,7 @@
         "nixos": [
           "nixos"
         ],
-        "pythoneda-shared-pythoneda-banner": "pythoneda-shared-pythoneda-banner_2",
+        "pythoneda-shared-pythoneda-banner": "pythoneda-shared-pythoneda-banner",
         "pythoneda-shared-pythoneda-domain": "pythoneda-shared-pythoneda-domain"
       },
       "locked": {
@@ -136,32 +138,6 @@
       }
     },
     "pythoneda-shared-pythoneda-banner": {
-      "inputs": {
-        "flake-utils": [
-          "pythoneda-shared-domain",
-          "flake-utils"
-        ],
-        "nixos": [
-          "pythoneda-shared-domain",
-          "nixos"
-        ]
-      },
-      "locked": {
-        "lastModified": 1705000493,
-        "narHash": "sha256-95OtHjJreiv5Aamc3CYDbd3S8dNFvjVgoYyUx4UO5OU=",
-        "owner": "pythoneda-shared-pythoneda-def",
-        "repo": "banner",
-        "rev": "87e640d31c9687baf5c47f42573b1472839ad3b3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pythoneda-shared-pythoneda-def",
-        "ref": "0.0.41",
-        "repo": "banner",
-        "type": "github"
-      }
-    },
-    "pythoneda-shared-pythoneda-banner_2": {
       "inputs": {
         "flake-utils": [
           "pythoneda-shared-infrastructure",
