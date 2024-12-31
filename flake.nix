@@ -31,7 +31,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
-      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.108";
+      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.109";
     };
     pythoneda-shared-pythonlang-infrastructure = {
       inputs.flake-utils.follows = "flake-utils";
@@ -40,7 +40,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-def/infrastructure/0.0.83";
+      url = "github:pythoneda-shared-pythonlang-def/infrastructure/0.0.84";
     };
   };
   outputs = inputs:
@@ -49,8 +49,8 @@
       let
         org = "pythoneda-shared-code-requests";
         repo = "events-infrastructure";
-        version = "0.0.9";
-        sha256 = "0q488xz7zkdv9560k6pycibavnk93l0mirdn4qnch3952z9izj0j";
+        version = "0.0.10";
+        sha256 = "1ryvcwixb4ki6pbw1hxm5fnf6zibpzb5wg39f5h8mmi47rs8arxm";
         pname = "${org}-${repo}";
         pkgs = import nixpkgs { inherit system; };
         description =
