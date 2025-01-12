@@ -21,6 +21,15 @@
   inputs = rec {
     flake-utils.url = "github:numtide/flake-utils/v1.0.0";
     nixpkgs.url = "github:NixOS/nixpkgs/24.05";
+    pythoneda-shared-code-requests-events = {
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.pythoneda-shared-pythonlang-banner.follows =
+        "pythoneda-shared-pythonlang-banner";
+      inputs.pythoneda-shared-pythonlang-domain.follows =
+        "pythoneda-shared-pythonlang-domain";
+      url = "github:pythoneda-shared-code-requests-def/events/0.0.80";
+    };
     pythoneda-shared-pythonlang-banner = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -67,6 +76,7 @@
           builtins.replaceStrings [ "\n" ] [ "" ] "nixpkgs-${nixpkgsVersion}";
         shared = import "${pythoneda-shared-pythonlang-banner}/nix/shared.nix";
         pythoneda-shared-code-requests-events-infrastructure-for = { python
+          , pythoneda-shared-code-requests-events
           , pythoneda-shared-pythonlang-domain
           , pythoneda-shared-pythonlang-infrastructure }:
           let
@@ -91,6 +101,7 @@
               inherit homepage pname pythonpackage version;
               pythonMajorMinor = pythonMajorMinorVersion;
               package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
+              pythonedaSharedCodeRequestsEvents = pythoneda-shared-code-requests-events.version;
               pythonedaSharedPythonlangDomain =
                 pythoneda-shared-pythonlang-domain.version;
               pythonedaSharedPythonlangInfrastructure =
@@ -107,6 +118,7 @@
 
             nativeBuildInputs = with python.pkgs; [ pip poetry-core ];
             propagatedBuildInputs = with python.pkgs; [
+              pythoneda-shared-code-requests-events
               pythoneda-shared-pythonlang-domain
               pythoneda-shared-pythonlang-infrastructure
             ];
@@ -114,22 +126,32 @@
             pythonImportsCheck = [ pythonpackage ];
 
             unpackPhase = ''
-              cp -r ${src} .
-              sourceRoot=$(ls | grep -v env-vars)
-              chmod +w $sourceRoot
-              cp ${pyprojectToml} $sourceRoot/pyproject.toml
+              command cp -r ${src} .
+              sourceRoot=$(command ls | command grep -v env-vars)
+              command chmod +w $sourceRoot
+              command cp ${pyprojectToml} $sourceRoot/pyproject.toml
             '';
 
-            postInstall = ''
-              pushd /build/$sourceRoot
-              for f in $(find . -name '__init__.py'); do
+            postInstall = with python.pkgs; ''
+              command pushd /build/$sourceRoot
+              for f in $(command find . -name '__init__.py'); do
                 if [[ ! -e $out/lib/python${pythonMajorMinorVersion}/site-packages/$f ]]; then
-                  cp $f $out/lib/python${pythonMajorMinorVersion}/site-packages/$f;
+                  command cp $f $out/lib/python${pythonMajorMinorVersion}/site-packages/$f;
                 fi
               done
-              popd
-              mkdir $out/dist
-              cp dist/${wheelName} $out/dist
+              command popd
+              command mkdir -p $out/dist $out/deps/flakes
+              command cp dist/${wheelName} $out/dist
+              for dep in ${pythoneda-shared-code-requests-events} ${pythoneda-shared-pythonlang-domain} ${pythoneda-shared-pythonlang-infrastructure}; do
+                command cp -r $dep/dist/* $out/deps || true
+                if [ -e $dep/deps ]; then
+                  command cp -r $dep/deps/* $out/deps || true
+                fi
+                METADATA=$dep/lib/python${pythonMajorMinorVersion}/site-packages/*.dist-info/METADATA
+                NAME="$(command grep -m 1 '^Name: ' $METADATA | command cut -d ' ' -f 2)"
+                VERSION="$(command grep -m 1 '^Version: ' $METADATA | command cut -d ' ' -f 2)"
+                command ln -s $dep $out/deps/flakes/$NAME-$VERSION || true
+              done
             '';
 
             meta = with pkgs.lib; {
@@ -226,6 +248,7 @@
           pythoneda-shared-code-requests-events-infrastructure-python39 =
             pythoneda-shared-code-requests-events-infrastructure-for {
               python = pkgs.python39;
+              pythoneda-shared-code-requests-events = pythoneda-shared-code-requests-events.packages.${system}.pythoneda-shared-code-requests-events-python39;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python39;
               pythoneda-shared-pythonlang-infrastructure =
@@ -234,6 +257,7 @@
           pythoneda-shared-code-requests-events-infrastructure-python310 =
             pythoneda-shared-code-requests-events-infrastructure-for {
               python = pkgs.python310;
+              pythoneda-shared-code-requests-events = pythoneda-shared-code-requests-events.packages.${system}.pythoneda-shared-code-requests-events-python310;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python310;
               pythoneda-shared-pythonlang-infrastructure =
@@ -242,6 +266,7 @@
           pythoneda-shared-code-requests-events-infrastructure-python311 =
             pythoneda-shared-code-requests-events-infrastructure-for {
               python = pkgs.python311;
+              pythoneda-shared-code-requests-events = pythoneda-shared-code-requests-events.packages.${system}.pythoneda-shared-code-requests-events-python311;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python311;
               pythoneda-shared-pythonlang-infrastructure =
@@ -250,6 +275,7 @@
           pythoneda-shared-code-requests-events-infrastructure-python312 =
             pythoneda-shared-code-requests-events-infrastructure-for {
               python = pkgs.python312;
+              pythoneda-shared-code-requests-events = pythoneda-shared-code-requests-events.packages.${system}.pythoneda-shared-code-requests-events-python312;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python312;
               pythoneda-shared-pythonlang-infrastructure =
@@ -258,6 +284,7 @@
           pythoneda-shared-code-requests-events-infrastructure-python313 =
             pythoneda-shared-code-requests-events-infrastructure-for {
               python = pkgs.python313;
+              pythoneda-shared-code-requests-events = pythoneda-shared-code-requests-events.packages.${system}.pythoneda-shared-code-requests-events-python313;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python313;
               pythoneda-shared-pythonlang-infrastructure =
